@@ -1,0 +1,63 @@
+1)
+KD4_Harshal_83544>select count(ODATE) from ORDERS where ODATE='1990-10-03';
++--------------+
+| count(ODATE) |
++--------------+
+|            5 |
++--------------+
+
+
+2)
+KD4_Harshal_83544>select count(CITY) from CUSTOMERS where CITY is not null;
++-------------+
+| count(CITY) |
++-------------+
+|           7 |
++-------------+
+
+
+3)
+KD4_Harshal_83544>select min(AMT) "Smallest Order",CNUM from ORDERS group by CNUM;
++----------------+------+
+| Smallest Order | CNUM |
++----------------+------+
+|          18.69 | 2008 |
+|         767.19 | 2001 |
+|        1900.10 | 2007 |
+|        5160.45 | 2003 |
+|        1713.23 | 2002 |
+|          75.75 | 2004 |
+|        4723.00 | 2006 |
++----------------+------+
+
+
+4)
+KD4_Harshal_83544>select CNAME from CUSTOMERS where CNAME like 'G%' order by CNAME limit 1;
++----------+
+| CNAME    |
++----------+
+| Giovanni |
++----------+
+
+
+5)KD4_Harshal_83544>select max(RATING) "Highest Ratings",CITY from CUSTOMERS group by CITY;
++-----------------+----------+
+| Highest Ratings | CITY     |
++-----------------+----------+
+|             100 | London   |
+|             200 | Rome     |
+|             300 | San Jose |
+|             300 | Berlin   |
++-----------------+----------+
+
+
+6) KD4_Harshal_83544>select ODATE,count(distinct SNUM) from ORDERS group by 1;
++------------+----------------------+
+| ODATE      | count(distinct SNUM) |
++------------+----------------------+
+| 1990-10-03 |                    4 |
+| 1990-10-04 |                    2 |
+| 1990-10-05 |                    1 |
+| 1990-10-06 |                    2 |
++------------+----------------------+
+
