@@ -1,0 +1,28 @@
+1)
+KD4_Harshal_83544>select ONUM,AMT,ODATE from ORDERS where SNUM= (select SNUM from CUSTOMERS where SNUM=1007);
++------+---------+------------+
+| ONUM | AMT     | ODATE      |
++------+---------+------------+
+| 3001 |   18.69 | 1990-10-03 |
+| 3006 | 1098.16 | 1990-10-03 |
++------+---------+------------+
+
+
+
+2)KD4_Harshal_83544>select CNAME,RATING from CUSTOMERS where CNUM in(select CNUM from ORDERS where AMT>(select avg(AMT) from ORDERS));
++---------+--------+
+| CNAME   | RATING |
++---------+--------+
+| Liu     |    200 |
+| Clemens |    100 |
++---------+--------+
+
+
+3)
+KD4_Harshal_83544>select sum(AMT) from ORDERS group by SNUM having sum(AMT)>(select max(AMT) From ORDERS);
++----------+
+| sum(AMT) |
++----------+
+| 15382.07 |
++----------+
+
