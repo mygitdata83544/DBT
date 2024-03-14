@@ -1,0 +1,20 @@
+1)
+KD4_Harshal_83544>select a.SNAME,b.SNAME,a.CITY from SALESPEOPLE a,SALESPEOPLE b where a.CITY=b.CITY and a.SNAME >b.SNAME;
+
++-------+--------+--------+
+| SNAME | SNAME  | CITY   |
++-------+--------+--------+
+| Peel  | Motika | London |
++-------+--------+--------+
+
+
+2)
+KD4_Harshal_83544>select CNAME,CITY from CUSTOMERS where RATING =(select RATING from CUSTOMERS where CNAME='Hoffman');
++---------+--------+
+| CNAME   | CITY   |
++---------+--------+
+| Hoffman | London |
+| Clemens | London |
+| Pereira | Rome   |
++---------+--------+
+
