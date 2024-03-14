@@ -1,0 +1,46 @@
+1)
+KD4_Harshal_83544>select CNAME,CITY,'High Rating' RATING from CUSTOMERS where RATING>=200 union select CNAME,CITY,'Low Rating' RATING from CUSTOMERS where RATING<200; 
++-----------+----------+-------------+
+| CNAME     | CITY     | RATING      |
++-----------+----------+-------------+
+| Giovanni  | Rome     | High Rating |
+| Liu       | San Jose | High Rating |
+| Grass     | Berlin   | High Rating |
+| Cisnersos | San Jose | High Rating |
+| Hoffman   | London   | Low Rating  |
+| Clemens   | London   | Low Rating  |
+| Pereira   | Rome     | Low Rating  |
++-----------+----------+-------------+
+
+
+2)
+KD4_Harshal_83544>select SNAME,SNUM From SALESPEOPLE where SNUM=any(select SNUM from ORDERS group by SNUM having count(SNUM)>1)
+                    union 
+                  select CNAME,CNUM from CUSTOMERS where CNUM=any(select CNUM from ORDERS group by CNUM having count(CNUM)>1) Order by CNAME;
+
++-----------+------+
+| SNAME     | SNUM |
++-----------+------+
+| Cisnersos | 2008 |
+| Clemens   | 2006 |
+| Grass     | 2004 |
+| Peel      | 1001 |
+| Rifkin    | 1007 |
+| Serres    | 1002 |
++-----------+------+
+
+
+
+3)
+
+KD4_Harshal_83544>select SNUM from SALESPEOPLE where CITY='San Jose' union select distinct SNUM from ORDERS where SNUM in(select SNUM from ORDERS where ODATE='1990-10-03');
++------+
+| SNUM |
++------+
+| 1002 |
+| 1100 |
+| 1007 |
+| 1001 |
+| 1004 |
++------+
+
