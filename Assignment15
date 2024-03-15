@@ -1,0 +1,64 @@
+
+1)
+KD4_Harshal_83544>create table MILTICUST as select * from SALESPEOPLE where SNUM in(select SNUM from CUSTOMERS group by SNUM having count(SNUM)>1);
+
+KD4_Harshal_83544>select * from MILTICUST;
++------+--------+----------+------+
+| SNUM | SNAME  | CITY     | COMM |
++------+--------+----------+------+
+| 1001 | Peel   | London   | 0.12 |
+| 1002 | Serres | San Jose | 0.13 |
++------+--------+----------+------+
+
+2)
+KD4_Harshal_83544>insert into CUSTOMERS values(2012,'Harshal','Ghatanji',600,1005);
+
+KD4_Harshal_83544>select * from CUSTOMERS;
++------+-----------+----------+--------+------+
+| CNUM | CNAME     | CITY     | RATING | SNUM |
++------+-----------+----------+--------+------+
+| 2001 | Hoffman   | London   |    200 | 1001 |
+| 2002 | Giovanni  | Rome     |    300 | 1003 |
+| 2003 | Liu       | San Jose |    300 | 1002 |
+| 2004 | Grass     | Berlin   |    400 | 1002 |
+| 2006 | Clemens   | London   |    200 | 1001 |
+| 2008 | Cisnersos | San Jose |    400 | 1007 |
+| 2007 | Pereira   | Rome     |    200 | 1002 |
+| 2012 | Harshal   | Ghatanji |    600 | 1005 |
++------+-----------+----------+--------+------+
+
+delete CUSTOMERS where CNUM=any(select CNUM from ORDERS where CNUM not in(select CNUM from CUSTOMERS));
+
++------+-----------+----------+--------+------+
+| CNUM | CNAME     | CITY     | RATING | SNUM |
++------+-----------+----------+--------+------+
+| 2001 | Hoffman   | London   |    200 | 1001 |
+| 2002 | Giovanni  | Rome     |    300 | 1003 |
+| 2003 | Liu       | San Jose |    300 | 1002 |
+| 2004 | Grass     | Berlin   |    400 | 1002 |
+| 2006 | Clemens   | London   |    200 | 1001 |
+| 2008 | Cisnersos | San Jose |    400 | 1007 |
+| 2007 | Pereira   | Rome     |    200 | 1002 |
++------+-----------+----------+--------+------+
+
+
+
+
+
+
+
+3)
+update SALESPEOPLE set COMM=COMM*1.20 where SNUM in(select SNUM from ORDERS where AMT>300);
+
+KD4_Harshal_83544>select * from SALESPEOPLE;
+
++------+---------+-----------+------+
+| SNUM | SNAME   | CITY      | COMM |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.14 |
+| 1002 | Serres  | San Jose  | 0.16 |
+| 1004 | Motika  | London    | 0.13 |
+| 1007 | Rifkin  | Barcelona | 0.18 |
+| 1003 | Axelrod | New York  | 0.12 |
++------+---------+-----------+------+
+
