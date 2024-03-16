@@ -1,0 +1,246 @@
+
+Assignment 1-5
+
+
+Installation:-
+
+  Step 1- 
+       the public key used by the package management system-
+ 
+              sudo apt-get install gnupg curl
+   
+       To import the MongoDB public GPG key:-
+   
+              curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \--dearmor
+   
+ 
+  Step 2- Create a list file for MongoDB:-
+ 
+      echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse"     |sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+     
+     
+  Step 3- 
+     Reload local package database:-
+          sudo apt-get update
+        
+  Step 4-
+    Install the MongoDB packages:-
+          sudo apt-get install -y mongodb-org
+        
+  Step 5-
+      Start MongoDB:-
+          sudo systemctl start mongod
+      
+  Step 6-
+        Verify that MongoDB has started successfully:-
+             sudo systemctl status mongod
+
+
+  Step 7-
+     Stop MongoDB:-
+       sudo systemctl stop mongod
+
+
+  Step 8-
+     Restart MongoDB:-
+        sudo systemctl restart mongod
+
+  Step 9:-
+     Begin using MongoDB:-
+         mongosh
+
+  
+        
+  
+
+    
+     
+Assignment 6
+
+  test> show dbs
+
+  admin   40.00 KiB
+  config  12.00 KiB
+  local   72.00 KiB
+  
+  
+
+Assignment 7
+
+  test> use CDAC
+
+  switched to db CDAC
+  
+  
+
+Assignment 8
+
+  CDAC> show collections
+  
+  
+
+Assignment 9
+
+  CDAC> db.createCollection("LIBRARY")
+
+  { ok: 1 }
+  
+  
+  
+Assignment 10
+
+
+     CDAC> db.LIBRARY.insert({title:'MongoDB programming',author:'Sameer',likes:100})
+   {
+     acknowledged: true,
+     insertedIds: { '0': ObjectId('65f566e5a73e6763b7db83b1') }
+   }
+
+ 
+ 
+  
+Assignment 11
+
+     CDAC> db.LIBRARY.find()
+  [
+    {
+       _id: ObjectId('65f566e5a73e6763b7db83b1'),
+        title: 'MongoDB programming',
+        author: 'Sameer',
+        likes: 100
+    }
+  ]
+
+
+
+
+Assignment 12
+
+    CDAC> db.LIBRARY.insert({title:'MySQL programming',authors:['Jack','Jill'],likes:200})
+  {
+    acknowledged: true,
+    insertedIds: { '0': ObjectId('65f5682ba73e6763b7db83b2') }
+  }
+  
+  
+
+Assignment 13
+
+
+CDAC> db.LIBRARY.find()
+[
+  {
+    _id: ObjectId('65f566e5a73e6763b7db83b1'),
+    title: 'MongoDB programming',
+    author: 'Sameer',
+    likes: 100
+  },
+  {
+    _id: ObjectId('65f5682ba73e6763b7db83b2'),
+    title: 'MySQL programming',
+    authors: [ 'Jack', 'Jill' ],
+    likes: 200
+  }
+]
+
+
+
+
+Assignment 14
+
+
+CDAC> db.LIBRARY.findOne()
+{
+  _id: ObjectId('65f566e5a73e6763b7db83b1'),
+  title: 'MongoDB programming',
+  author: 'Sameer',
+  likes: 100
+}
+
+
+
+
+Assignment 15
+
+
+CDAC> db.LIBRARY.find().pretty()
+[
+  {
+    _id: ObjectId('65f566e5a73e6763b7db83b1'),
+    title: 'MongoDB programming',
+    author: 'Sameer',
+    likes: 100
+  },
+  {
+    _id: ObjectId('65f5682ba73e6763b7db83b2'),
+    title: 'MySQL programming',
+    authors: [ 'Jack', 'Jill' ],
+    likes: 200
+  }
+]
+
+
+
+
+Assignment 16
+
+
+CDAC> db.LIBRARY.update({author:'Sameer'},{$set : {author:'Sameer Dehadrai'}})
+
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+
+Assignment 17
+
+CDAC> db.LIBRARY.remove({likes:100})
+
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+
+CDAC> db.LIBRARY.find()
+[
+  {
+    _id: ObjectId('65f5682ba73e6763b7db83b2'),
+    title: 'MySQL programming',
+    authors: [ 'Jack', 'Jill' ],
+    likes: 200
+  }
+]
+
+
+
+Assignment 18
+
+CDAC> db.LIBRARY.drop()
+true
+
+
+Assignment 19
+
+CDAC> db.dropDatabase()
+{ ok: 1, dropped: 'CDAC' }
+
+
+Assignment 20
+
+CDAC> exit
+sunbeam@sunbeam-harshal:~$ 
+
+
+
+21)
+
+
+
+       
+          
+ 
+ 
